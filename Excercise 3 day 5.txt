@@ -1,0 +1,16 @@
+use anjali;
+select concat(upper(substr(sname,1,1)),lower(substr(sname,2)))as sname from s;
+
+select upper(sname) from s;
+
+select lower(sname) from s;
+
+SELECT LPAD(sname,25,' ') FROM s;
+
+select replace (sname,'al','ro') from s;
+
+select replace(replace(sname,'l','r'),'a','o') from s;
+
+select length(sname) from s;
+
+select * from s where soundex(sname) = soundex('anju');
