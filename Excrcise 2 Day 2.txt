@@ -1,0 +1,92 @@
+SQL Exercise 2
+mysql> select * from s order by city desc;
++------+----------+--------+----------+
+| S#   | Sname    | status | city     |
++------+----------+--------+----------+
+| S3   | anju     |     30 | Pune     |
+| S1   | Anjali   |     10 | nashik   |
+| S2   | shital   |     20 | Nashik   |
+| S4   | akash    |     10 | mumbai   |
+| S6   | rupali   |     30 | mumbai   |
+| S8   | shreya   |     20 | Mumbai   |
+| S5   | Anuj     |     20 | Malegaon |
+| S9   | Amol     |     30 | Malegaon |
+| S7   | abhi     |     10 | Jalegaon |
+| S10  | abhijeet |     10 | Jalegaon |
++------+----------+--------+----------+
+10 rows in set (0.05 sec)
+
+mysql> select * from p order by pname ,city;
++------+-------------+--------+--------+----------+
+| p#   | Pname       | Color  | Weight | City     |
++------+-------------+--------+--------+----------+
+| P5   | Coils       | copper | 25 kg  | Jalegaon |
+| P6   | Diode       | Black  | 1 kg   | Malegaon |
+| P1   | Gear        | Silver | 2 kg   | Nashik   |
+| P2   | Motor       | Golden | 20 kg  | Pune     |
+| P3   | Piston      | Silver | 5 kg   | Malegaon |
+| P4   | Transformer | Blue   | 100 kg | Pune     |
++------+-------------+--------+--------+----------+
+6 rows in set (0.05 sec)
+
+mysql> select sname from suppliers where status between 10 and 20;
+ERROR 1146 (42S02): Table 'anjali.suppliers' doesn't exist
+mysql> select sname from s where status between 10 and 20;
++----------+
+| sname    |
++----------+
+| Anjali   |
+| shital   |
+| Anuj     |
+| akash    |
+| abhi     |
+| shreya   |
+| abhijeet |
++----------+
+7 rows in set (0.00 sec)
+
+mysql> select pname from p where weight not between 10 and 15;
++-------------+
+| pname       |
++-------------+
+| Gear        |
+| Motor       |
+| Piston      |
+| Transformer |
+| Coils       |
+| Diode       |
++-------------+
+6 rows in set, 6 warnings (0.00 sec)
+
+mysql> select * from p where pname like 'g%';
++------+-------+--------+--------+--------+
+| p#   | Pname | Color  | Weight | City   |
++------+-------+--------+--------+--------+
+| P1   | Gear  | Silver | 2 kg   | Nashik |
++------+-------+--------+--------+--------+
+1 row in set (0.00 sec)
+
+mysql> select sname from suppliers where city like 'm%';
+ERROR 1146 (42S02): Table 'anjali.suppliers' doesn't exist
+mysql> select sname from s where city like 'm%';
++--------+
+| sname  |
++--------+
+| Anuj   |
+| akash  |
+| rupali |
+| shreya |
+| Amol   |
++--------+
+5 rows in set (0.00 sec)
+
+mysql> select jname from j where jname like'__S%';
++-----------------+
+| jname           |
++-----------------+
+| Misson Godavari |
+| Misson mangal   |
++-----------------+
+2 rows in set (0.04 sec)
+
+mysql>
