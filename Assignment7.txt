@@ -1,0 +1,11 @@
+Assignment 06
+
+select * from orders;
+select count(*) from orders where odate = '1990-10-03';
+select count(city) from customers where cname is not NULL;
+select * from customers;
+select min(amt),cnum from orders group by cnum;
+select * from customers where cname like 'G%';
+select max(rating),city from customers group by city;
+select * from customers;
+SELECT count(odate),odate FROM orders GROUP BY odate;
