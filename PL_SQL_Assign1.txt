@@ -1,0 +1,224 @@
+Sameer Dehadrai
+MySQL
+Exercise 1
+1. Write a program that computes the perimeter and the area of a rectangle. 
+Define your own values for the length and width. 
+(Assuming that L and W are the length and width of the rectangle, Perimeter = 2*(L+W) and Area = L*W.
+
+create table output
+(
+	length int(10),
+	width int(10),
+	area int(10),
+	perimeter int(10)
+);
+create table rect
+(
+	len int(10),
+	wid int(10)
+);
+insert into rect values(10,20);
+
+delimiter //
+create procedure rectangle()
+begin
+	declare x int(10);
+	declare y int(10);
+	declare area int(10);
+	declare perimeter int(10);
+	select len,wid into x , y from rect where len=10;
+	set area = x * y;
+	set perimeter= 2*(x+y);
+	insert into output values(x,y,area,perimeter);
+end;
+//
+delimiter ;
+
+ call rectangle()
+    -> ;
+Query OK, 1 row affected (0.34 sec)
+
+mysql> select * from output;
++--------+-------+------+-----------+
+| length | width | area | perimeter |
++--------+-------+------+-----------+
+|     10 |    20 |  200 |        60 |
++--------+-------+------+-----------+
+
+
+
+
+2. Write a program that declares an integer variable called num, assigns a value to it, and 
+computes and inserts into the tempp table the value of the variable itself, its square, and its cube.
+
+create table tempp
+(
+	num int(10),
+	square int(10),
+	cube_root int(10)
+);
+create table sq_cu
+(
+	no int(10)
+);
+insert into rect values(10);
+
+
+
+delimiter //
+create procedure sq_cu()
+begin
+	declare x int(10);
+	select no into x from sq_cu where no=10;
+	insert into tempp values(x,x*x,x*x*x);
+end;
+//
+delimiter ;
+
+ call sq_cu()
+    -> ;
+Query OK, 1 row affected (0.26 sec)
+
+mysql> select * from tempp;
++------+--------+-----------+
+| num  | square | cube_root |
++------+--------+-----------+
+|   10 |    100 |      1000 |
++------+--------+-----------+
+
+
+
+
+
+
+3. Convert a temperature in Fahrenheit (F) to its equivalent in Celsius (C) and vice versa. The required formulae are:- C= (F-32)*5/9
+F= 9/5*C + 32
+
+create table temperature
+(
+	temperature int(10),
+	fahrenheit int(10)
+);
+insert into temperature values(10,20);
+
+create table temp_fahren
+(
+	c int(10),
+	f int(10),
+	cel_far int(10),
+	far_cel int(10)
+);
+
+delimiter //
+create procedure temp_fahren()
+begin
+	declare x int(10);
+	declare y int(10);
+	declare res1 int(10);
+	declare res2 int(10);
+	select temperature , fahrenheit into x,y from temperature where temperature=10;
+	set res1=(y-32)*5/9;
+	set res1=9/5*x+32;
+	insert into temp_fahren values(x,y,res1,res2);
+end;
+//
+delimiter ;
+
+ call temp_fahren()
+    -> ;
+Query OK, 1 row affected (0.28 sec)
+
+mysql> select * from temp_fahren;
++------+------+---------+---------+
+| c    | f    | cel_far | far_cel |
++------+------+---------+---------+
+|   10 |   20 |      50 |    NULL |
++------+------+---------+---------+
+
+
+
+4. Convert a number of inches into yards, feet, and inches. For example, 124 inches equals 3 yards, 1 foot, and 4 inches.
+
+create table Q4(
+input int(4),
+yards int(4),
+foot int(4),
+inches int(4)
+);
+
+delimiter //
+create procedure Q4 (inch int)
+
+begin
+
+declare yard int(4);
+declare foot int(4);
+declare inches int(4);
+set yard =inch/36 ;
+set foot= (inch % 36) / 12;
+set inches = inch -((foot*12)+(yard*36));
+insert into Q4 values (inch,yard,foot,inches);
+
+ 
+end;//
+delimiter ;
+
+
+call Q4(124);
+
+5. Write a program that enables a user to input an integer. The program should then state whether the integer is evenly divisible by 5.
+
+create table Q5(
+a int (4),
+b char (10)
+);
+
+
+delimiter %
+create procedure Q5()
+begin
+declare a int(4) default 10;
+declare b char (10) ;
+
+if (a mod 5 = 0)  then
+
+    insert into Q5 values (a, 'yes');
+else 
+	insert into Q5 values (b, 'No');
+end if;
+end; %
+delimiter ;
+
+call Q5();
+
+select * from Q5;
+
+
+
+
+6. Your block should read in two real numbers and tell whether the product of the two numbers is equal to or greater than 100.
+
+create table Q5(
+a int (4),
+b char (10)
+);
+
+
+delimiter %
+create procedure Q5()
+begin
+declare a int(4) default 10;
+declare b char (10) ;
+
+if (a mod 5 = 0)  then
+
+    insert into Q5 values (a, 'yes');
+else 
+	insert into Q5 values (b, 'No');
+end if;
+end; %
+delimiter ;
+
+call Q5();
+
+select * from Q5;
